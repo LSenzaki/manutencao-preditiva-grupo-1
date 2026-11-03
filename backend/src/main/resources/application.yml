@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: manutencao-api
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/manutencao}
+    username: ${SPRING_DATASOURCE_USERNAME:mp_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:troque_esta_senha}
+  jpa:
+    hibernate:
+      ddl-auto: validate   # schema é do db/init.sql; o Hibernate só confere
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+ml:
+  service:
+    url: ${ML_SERVICE_URL:http://localhost:8000}
+    timeout-ms: 3000
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

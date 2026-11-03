@@ -1,0 +1,26 @@
+### Leitura válida -> 201
+POST http://localhost:8080/api/predicoes
+Content-Type: application/json
+
+{"maquinaId":"MAQ-001","tipoProduto":"M","temperaturaArK":298.1,"temperaturaProcessoK":308.6,"rotacaoRpm":1551,"torqueNm":42.8,"desgasteFerramentaMin":0}
+
+### Desgaste alto -> stub prevê TWF
+POST http://localhost:8080/api/predicoes
+Content-Type: application/json
+
+{"maquinaId":"MAQ-002","tipoProduto":"L","temperaturaArK":300.0,"temperaturaProcessoK":310.0,"rotacaoRpm":1500,"torqueNm":40.0,"desgasteFerramentaMin":220}
+
+### maquinaId em branco -> 400 (barrado no Java, Python nem é chamado)
+POST http://localhost:8080/api/predicoes
+Content-Type: application/json
+
+{"maquinaId":"   ","tipoProduto":"M","temperaturaArK":298.1,"temperaturaProcessoK":308.6,"rotacaoRpm":1551,"torqueNm":42.8,"desgasteFerramentaMin":0}
+
+### Processo mais frio que o ar -> 400
+POST http://localhost:8080/api/predicoes
+Content-Type: application/json
+
+{"maquinaId":"MAQ-003","tipoProduto":"H","temperaturaArK":305.0,"temperaturaProcessoK":300.0,"rotacaoRpm":1551,"torqueNm":42.8,"desgasteFerramentaMin":0}
+
+### Histórico da máquina
+GET http://localhost:8080/api/predicoes?maquinaId=MAQ-001

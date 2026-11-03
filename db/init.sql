@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS predicao (
     id                      BIGSERIAL PRIMARY KEY,
     maquina_id              VARCHAR(50)  NOT NULL,
-    tipo_produto            CHAR(1)      NOT NULL CHECK (tipo_produto IN ('L','M','H')),
+    tipo_produto            VARCHAR(1)   NOT NULL CHECK (tipo_produto IN ('L','M','H')),
     temperatura_ar_k        NUMERIC(6,2) NOT NULL,
     temperatura_processo_k  NUMERIC(6,2) NOT NULL,
     rotacao_rpm             INTEGER      NOT NULL,

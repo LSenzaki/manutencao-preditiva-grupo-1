@@ -1,8 +1,9 @@
-Gere o projeto no https://start.spring.io e extraia o conteúdo AQUI (mantendo este Dockerfile).
+Backend Spring Boot 3.5 / Java 21.
 
-- Project: Maven | Language: Java | Java: 21
-- Group: br.edu.biopark | Artifact: manutencao-api
-- Dependências: Spring Web, Spring Data JPA, PostgreSQL Driver, Validation, Lombok, Spring Boot Actuator
+Configuração equivalente no Spring Initializr (para mostrar ao professor):
+Maven | Java 21 | Group br.edu.biopark | Artifact manutencao-api
+Dependências: Spring Web, Spring Data JPA, PostgreSQL Driver, Validation, Spring Boot Actuator.
+O springdoc-openapi (Swagger) foi adicionado manualmente no pom.xml.
 
-Depois adicione o Swagger manualmente no pom.xml (springdoc-openapi-starter-webmvc-ui),
-na versão compatível com o Spring Boot escolhido (springdoc 2.x → Boot 3; 3.x → Boot 4).
+Rodar local (fora do Docker): suba `docker compose up postgres ml-service` e rode a classe
+ManutencaoApiApplication pela IDE. Requisições de teste em requisicoes.http.

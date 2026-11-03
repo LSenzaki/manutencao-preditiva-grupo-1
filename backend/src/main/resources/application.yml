@@ -2,7 +2,7 @@ spring:
   application:
     name: manutencao-api
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/manutencao}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/manutencao}
     username: ${SPRING_DATASOURCE_USERNAME:mp_user}
     password: ${SPRING_DATASOURCE_PASSWORD:troque_esta_senha}
   jpa:

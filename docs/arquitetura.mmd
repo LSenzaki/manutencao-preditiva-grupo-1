@@ -1,15 +1,32 @@
 flowchart LR
-    U[Usuário / Swagger UI] -->|POST /api/predicoes JSON| C
-    subgraph backend [Backend - Spring Boot :8080]
-        C[PredicaoController] --> V{Bean Validation}
-        V -->|inválido| E[400 Bad Request]
-        V -->|válido| S[PredicaoService]
-        S --> R[PredicaoRepository - JPA]
-        S --> MC[MlClient - RestClient]
+    user["Usuário / Swagger UI"]
+
+    subgraph compose["docker-compose"]
+        subgraph backend["backend - Spring Boot :8080"]
+            ctrl["PredicaoController"]
+            val{"Bean Validation"}
+            svc["PredicaoService"]
+            repo["PredicaoRepository - JPA"]
+            cli["MlClient - RestClient"]
+        end
+
+        subgraph ml["ml-service - FastAPI :8000"]
+            api["POST /predict"]
+            model[("modelo.joblib")]
+        end
+
+        db[("PostgreSQL :5432 - tabela predicao")]
     end
-    MC -->|POST /predict síncrono| ML
-    subgraph ml [ML Service - FastAPI :8000]
-        ML[/predict/] --> M[(modelo.joblib)]
-    end
-    R --> DB[(PostgreSQL :5432 - tabela predicao)]
-    S -->|probabilidade + tipo de falha| U
+
+    err["400 Bad Request"]
+
+    user -->|"POST /api/predicoes"| ctrl
+    ctrl --> val
+    val -->|"inválido"| err
+    val -->|"válido"| svc
+    svc --> cli
+    cli -->|"HTTP síncrono - JSON"| api
+    api --> model
+    svc --> repo
+    repo -->|"JDBC"| db
+    svc -->|"201 + probabilidade e risco"| user

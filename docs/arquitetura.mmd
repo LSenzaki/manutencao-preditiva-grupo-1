@@ -1,0 +1,15 @@
+flowchart LR
+    U[Usuário / Swagger UI] -->|POST /api/predicoes JSON| C
+    subgraph backend [Backend - Spring Boot :8080]
+        C[PredicaoController] --> V{Bean Validation}
+        V -->|inválido| E[400 Bad Request]
+        V -->|válido| S[PredicaoService]
+        S --> R[PredicaoRepository - JPA]
+        S --> MC[MlClient - RestClient]
+    end
+    MC -->|POST /predict síncrono| ML
+    subgraph ml [ML Service - FastAPI :8000]
+        ML[/predict/] --> M[(modelo.joblib)]
+    end
+    R --> DB[(PostgreSQL :5432 - tabela predicao)]
+    S -->|probabilidade + tipo de falha| U

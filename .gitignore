@@ -1,0 +1,14 @@
+.env
+# Java
+backend/target/
+*.class
+.idea/
+*.iml
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+ml-service/data/
+# Modelos grandes (versionar só se pequeno)
+# ml-service/models/*.joblib

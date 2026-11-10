@@ -1,10 +1,10 @@
-### Leitura válida -> 201
+### Leitura válida -> 201 com ML integrado ou 503 se indisponível
 POST http://localhost:8080/api/predicoes
 Content-Type: application/json
 
 {"maquinaId":"MAQ-001","tipoProduto":"M","temperaturaArK":298.1,"temperaturaProcessoK":308.6,"rotacaoRpm":1551,"torqueNm":42.8,"desgasteFerramentaMin":0}
 
-### Desgaste alto -> deve prever TWF (quando o predict.py estiver integrado)
+### Leitura válida com desgaste alto
 POST http://localhost:8080/api/predicoes
 Content-Type: application/json
 
@@ -24,3 +24,6 @@ Content-Type: application/json
 
 ### Histórico da máquina
 GET http://localhost:8080/api/predicoes?maquinaId=MAQ-001
+
+### Predição inexistente em um banco novo -> 404
+GET http://localhost:8080/api/predicoes/1

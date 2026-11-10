@@ -8,7 +8,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 
-/** Comunicação síncrona Java → Python. */
+/**
+ * Comunicação síncrona Java → Python.
+ *
+ * TODO (próxima aula): trocar a chamada HTTP por ProcessBuilder executando
+ * {@code python ml/predict.py --tipo-produto ... } e fazer o parse do JSON do stdout
+ * para {@link MlPredictResponse}. Contrato em ml/README.md.
+ * Até lá, o POST /api/predicoes responde 503 (serviço de ML indisponível).
+ */
 @Component
 public class MlClient {
 

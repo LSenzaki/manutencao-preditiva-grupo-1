@@ -5,5 +5,5 @@ Maven | Java 21 | Group br.edu.biopark | Artifact manutencao-api
 Dependências: Spring Web, Spring Data JPA, PostgreSQL Driver, Validation, Spring Boot Actuator.
 O springdoc-openapi (Swagger) foi adicionado manualmente no pom.xml.
 
-Rodar local (fora do Docker): suba `docker compose up postgres ml-service` e rode a classe
+Rodar local (fora do Docker): suba `docker compose up postgres` e rode a classe
 ManutencaoApiApplication pela IDE. Requisições de teste em requisicoes.http.

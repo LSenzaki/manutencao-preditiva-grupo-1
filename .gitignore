@@ -9,6 +9,6 @@ __pycache__/
 *.pyc
 .venv/
 .ipynb_checkpoints/
-ml-service/data/
+ml/data/
 # Modelos grandes (versionar só se pequeno)
-# ml-service/models/*.joblib
+# ml/models/*.pkl

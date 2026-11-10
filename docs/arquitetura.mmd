@@ -7,12 +7,9 @@ flowchart LR
             val{"Bean Validation"}
             svc["PredicaoService"]
             repo["PredicaoRepository - JPA"]
-            cli["MlClient - RestClient"]
-        end
-
-        subgraph ml["ml-service - FastAPI :8000"]
-            api["POST /predict"]
-            model[("modelo.joblib")]
+            cli["MlClient - ProcessBuilder"]
+            pred["ml/predict.py"]
+            model[("modelo.pkl")]
         end
 
         db[("PostgreSQL :5432 - tabela predicao")]
@@ -25,8 +22,8 @@ flowchart LR
     val -->|"inválido"| err
     val -->|"válido"| svc
     svc --> cli
-    cli -->|"HTTP síncrono - JSON"| api
-    api --> model
+    cli -->|"python predict.py args - stdout JSON"| pred
+    pred --> model
     svc --> repo
     repo -->|"JDBC"| db
     svc -->|"201 + probabilidade e risco"| user

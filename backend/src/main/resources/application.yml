@@ -13,6 +13,7 @@ spring:
       hibernate:
         format_sql: true
 
+# TEMPORÁRIO: cliente HTTP antigo. Na próxima aula o MlClient passa a usar ProcessBuilder (ml/predict.py)
 ml:
   service:
     url: ${ML_SERVICE_URL:http://localhost:8000}

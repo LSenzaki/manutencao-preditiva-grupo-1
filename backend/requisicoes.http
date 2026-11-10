@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {"maquinaId":"MAQ-001","tipoProduto":"M","temperaturaArK":298.1,"temperaturaProcessoK":308.6,"rotacaoRpm":1551,"torqueNm":42.8,"desgasteFerramentaMin":0}
 
-### Desgaste alto -> stub prevê TWF
+### Desgaste alto -> deve prever TWF (quando o predict.py estiver integrado)
 POST http://localhost:8080/api/predicoes
 Content-Type: application/json
 

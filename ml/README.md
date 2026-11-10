@@ -8,6 +8,7 @@ ml/
 ├── data/          # ai4i2020.csv (NÃO vai para o git)
 ├── models/        # modelo.pkl gerado pelo train.py
 ├── notebooks/     # exploração
+├── download_data.py  # baixa o dataset da UCI
 ├── train.py       # treina e salva models/modelo.pkl
 ├── predict.py     # inferência via linha de comando
 └── requirements.txt
@@ -19,7 +20,7 @@ cd ml
 python3.12 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
-Dataset: https://archive.ics.uci.edu/dataset/601 → salvar como `ml/data/ai4i2020.csv`.
+Dataset (não versionado): rodar `python download_data.py` (baixa de https://archive.ics.uci.edu/dataset/601 para `ml/data/ai4i2020.csv`; `--force` para baixar de novo).
 Treinar com o scikit-learn do `requirements.txt` (1.5.2), senão o `.pkl` pode não carregar em outra máquina.
 
 ## Contrato do predict.py (o Java depende disso — não mudar sem avisar o backend)

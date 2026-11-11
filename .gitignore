@@ -12,3 +12,6 @@ __pycache__/
 ml/data/
 # Modelos grandes (versionar só se pequeno)
 # ml/models/*.pkl
+
+# relatorios de treino (gerados pelo train.py)
+ml/reports/

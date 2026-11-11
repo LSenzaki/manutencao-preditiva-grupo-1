@@ -17,12 +17,12 @@ gera o contrato OpenAPI e a interface Swagger.
 
 ## Executar com Docker
 
-Na raiz do repositório, com o Docker Engine em execução, use as configurações
-de exemplo para a demonstração local.
+Na raiz do repositório, com o Docker Engine em execução:
 
 ```bash
-docker compose --env-file .env.example up --build -d
-docker compose --env-file .env.example ps
+cp .env.example .env   # só na primeira vez
+docker compose up --build -d
+docker compose ps
 ```
 
 O Compose aguarda o PostgreSQL ficar saudável e publica a API na porta
@@ -34,7 +34,7 @@ Java 21 JRE Alpine.
 - [Contrato OpenAPI em JSON](http://localhost:8080/v3/api-docs)
 
 Para executar o Java pela IDE, suba só o banco com
-`docker compose --env-file .env.example up -d postgres` e execute a classe
+`docker compose up -d postgres` e execute a classe
 `ManutencaoApiApplication` com Java 21. A configuração local padrão do backend
 usa a porta `5433` do PostgreSQL.
 

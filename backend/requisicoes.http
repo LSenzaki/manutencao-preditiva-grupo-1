@@ -25,5 +25,5 @@ Content-Type: application/json
 ### Histórico da máquina
 GET http://localhost:8080/api/predicoes?maquinaId=MAQ-001
 
-### Predição inexistente em um banco novo -> 404
-GET http://localhost:8080/api/predicoes/1
+### Predição inexistente -> 404
+GET http://localhost:8080/api/predicoes/999999

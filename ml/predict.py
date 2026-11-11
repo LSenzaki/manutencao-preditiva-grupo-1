@@ -53,9 +53,14 @@ def main() -> None:
         }])
 
         probas = dict(zip(modelo.classes_, modelo.predict_proba(X)[0]))
+        probabilidade = float(1.0 - probas.get("NONE", 0.0))
+        falhas = {c: p for c, p in probas.items() if c != "NONE"}
+        # Tipo coerente com a probabilidade: a partir de 0.5 (risco ALTO no Java)
+        # devolve a falha mais provável; abaixo disso, NONE.
+        tipo = max(falhas, key=falhas.get) if probabilidade >= 0.5 and falhas else "NONE"
         resultado = {
-            "probabilidade_falha": round(float(1.0 - probas.get("NONE", 0.0)), 4),
-            "tipo_falha_previsto": str(modelo.predict(X)[0]),
+            "probabilidade_falha": round(probabilidade, 4),
+            "tipo_falha_previsto": str(tipo),
             "versao_modelo": VERSAO_MODELO,
         }
     except Exception as e:

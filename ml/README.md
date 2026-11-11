@@ -37,7 +37,7 @@ Saída: **uma única linha** de JSON no stdout, nada mais:
 ```
 
 - `probabilidade_falha`: número entre 0 e 1
-- `tipo_falha_previsto`: `TWF`, `HDF`, `PWF`, `OSF`, `RNF` ou `NONE`
+- `tipo_falha_previsto`: `TWF`, `HDF`, `PWF`, `OSF`, `RNF` ou `NONE` (falha mais provável quando `probabilidade_falha` >= 0.5; senão `NONE`)
 - `versao_modelo`: até 20 caracteres
 
 Regras de higiene:

@@ -7,17 +7,16 @@ spring:
     password: ${SPRING_DATASOURCE_PASSWORD:troque_esta_senha}
   jpa:
     hibernate:
-      ddl-auto: validate   # schema é do db/init.sql; o Hibernate só confere
+      ddl-auto: validate
     open-in-view: false
     properties:
       hibernate:
         format_sql: true
 
-# TEMPORÁRIO: cliente HTTP antigo. Na próxima aula o MlClient passa a usar ProcessBuilder (ml/predict.py)
 ml:
-  service:
-    url: ${ML_SERVICE_URL:http://localhost:8000}
-    timeout-ms: 3000
+  python-command: ${ML_PYTHON_COMMAND:python}
+  predict-script: ${ML_PREDICT_SCRIPT:ml/predict.py}
+  timeout-ms: ${ML_TIMEOUT_MS:10000}
 
 springdoc:
   swagger-ui:

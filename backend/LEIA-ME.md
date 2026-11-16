@@ -20,14 +20,14 @@ gera o contrato OpenAPI e a interface Swagger.
 Na raiz do repositório, com o Docker Engine em execução:
 
 ```bash
-cp .env.example .env   # só na primeira vez
-docker compose up --build -d
+docker compose up
 docker compose ps
 ```
 
-O Compose aguarda o PostgreSQL ficar saudável e publica a API na porta
-`8080`. O Dockerfile compila o JAR com Maven e roda a aplicação em uma imagem
-Java 21 JRE Alpine.
+O Compose usa credenciais locais de demonstração por padrão (`.env` é
+opcional), aguarda o PostgreSQL ficar saudável e publica a API na porta
+`8080`. Na primeira subida, o Dockerfile compila o JAR com Maven e instala
+Python 3.10 com as dependências fixadas do modelo em uma imagem Java 21.
 
 - [Saúde da API](http://localhost:8080/actuator/health)
 - [Swagger UI](http://localhost:8080/swagger-ui.html)
@@ -59,7 +59,10 @@ do modelo e a data de criação.
    predições, a resposta é `[]`.
 3. Consulte um ID que não exista e confira o `404`.
 4. Envie uma leitura com `maquinaId` em branco e confira o `400`.
+5. Envie uma leitura válida e confira o `201`, a probabilidade prevista e a
+   persistência no histórico.
 
-O `201` depende da integração de ML. Enquanto a predição estiver
-indisponível, uma leitura válida retorna `503`. Há exemplos prontos em
-[requisicoes.http](requisicoes.http).
+O backend executa `ml/predict.py` com as seis variáveis previstas pelo treino
+AI4I 2020, salva a previsão no PostgreSQL e devolve probabilidade, tipo de
+falha e nível de risco. Se o processo do modelo não iniciar ou falhar, a API
+retorna `503`. Há exemplos prontos em [requisicoes.http](requisicoes.http).

@@ -25,8 +25,8 @@ public class PredicaoService {
     }
 
     /**
-     * Sem @Transactional de propósito: a chamada HTTP ao ML fica fora da transação,
-     * para não segurar conexão do banco enquanto espera o Python.
+     * Sem @Transactional de propósito: a chamada ao processo Python fica fora da transação,
+     * para não segurar conexão do banco enquanto o modelo executa.
      */
     public PredicaoResponse registrar(LeituraRequest r) {
         MlPredictResponse ml = mlClient.prever(MlPredictRequest.from(r));

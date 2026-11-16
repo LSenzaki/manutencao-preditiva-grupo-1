@@ -23,6 +23,16 @@ pip install -r requirements.txt
 Dataset (não versionado): rodar `python download_data.py` (baixa de https://archive.ics.uci.edu/dataset/601 para `ml/data/ai4i2020.csv`; `--force` para baixar de novo).
 Treinar com o scikit-learn do `requirements.txt` (1.5.2), senão o `.pkl` pode não carregar em outra máquina.
 
+## Avaliar o modelo salvo sem retreinar
+
+Com o dataset baixado e as dependências instaladas, rode `python evaluate.py`.
+O script carrega `models/modelo.pkl`, recria a divisão de teste estratificada
+usada em `train.py` (20%, `random_state=42`) e grava
+`reports/avaliacao_modelo.md`. Ele não treina nem sobrescreve o modelo.
+O relatório inclui métricas por classe, F1 macro, balanced accuracy, matriz
+de confusão e métricas binárias de risco no limiar 0.50, incluindo recall,
+PR-AUC e falsos negativos.
+
 ## Contrato do predict.py (o Java depende disso — não mudar sem avisar o backend)
 
 O Java vai chamar via `ProcessBuilder`:

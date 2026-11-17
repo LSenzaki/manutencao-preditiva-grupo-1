@@ -42,7 +42,7 @@ usa a porta `5433` do PostgreSQL.
 
 | Método e rota | Respostas |
 | --- | --- |
-| `POST /api/predicoes` | `201` com a predição salva e seu endereço no cabeçalho `Location`, `400` para entrada inválida e `503` quando a predição está indisponível. |
+| `POST /api/predicoes` | `200` com a predição salva, `400` para entrada inválida e `503` quando a predição está indisponível. |
 | `GET /api/predicoes/{id}` | `200` com a predição ou `404` se o ID não existir. |
 | `GET /api/predicoes` | `200` com até as 50 predições mais recentes. Use `?maquinaId=MAQ-001` para filtrar por máquina. |
 
@@ -59,7 +59,7 @@ do modelo e a data de criação.
    predições, a resposta é `[]`.
 3. Consulte um ID que não exista e confira o `404`.
 4. Envie uma leitura com `maquinaId` em branco e confira o `400`.
-5. Envie uma leitura válida e confira o `201`, a probabilidade prevista e a
+5. Envie uma leitura válida e confira o `200`, a probabilidade prevista e a
    persistência no histórico.
 
 O backend executa `ml/predict.py` com as seis variáveis previstas pelo treino

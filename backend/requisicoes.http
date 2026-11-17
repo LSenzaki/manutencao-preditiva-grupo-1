@@ -1,4 +1,4 @@
-### Leitura válida -> 201 com ML integrado ou 503 se indisponível
+### Leitura válida -> 200 com ML integrado ou 503 se indisponível
 POST http://localhost:8080/api/predicoes
 Content-Type: application/json
 

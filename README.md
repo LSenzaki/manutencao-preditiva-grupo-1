@@ -4,6 +4,11 @@ Projeto final de Microsserviços. API em Spring Boot, modelo de ML em Python
 (chamado pelo Java via `ProcessBuilder`) e PostgreSQL para o histórico, orquestrados com Docker Compose.
 Dataset: AI4I 2020 Predictive Maintenance (UCI).
 
+## Integrantes e papéis
+- **Tech Lead / DevOps:** Lucas
+- **Engenheiros de Dados / MLOps:** Oliver e Daniel
+- **Engenheiros de Backend (Java):** Eugenio, Julio e Oliver
+
 ## Subir
 ```bash
 docker compose up
@@ -18,7 +23,7 @@ docker compose up
 - Postgres no host: `localhost:5433` (para não colidir com um Postgres instalado na máquina)
 
 Para testar uma previsão, envie o JSON de exemplo de `backend/requisicoes.http` para `POST /api/predicoes`.
-Uma leitura válida retorna `201 Created`, a probabilidade e o tipo de falha previsto; o histórico fica disponível em `GET /api/predicoes`.
+Uma leitura válida retorna `200 OK`, a probabilidade e o tipo de falha previsto; o histórico fica disponível em `GET /api/predicoes`.
 
 ## Estrutura
 - `backend/`: Spring Boot (validação, persistência, orquestração)

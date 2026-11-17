@@ -4,7 +4,6 @@ import br.edu.biopark.manutencao.dto.LeituraRequest;
 import br.edu.biopark.manutencao.dto.PredicaoResponse;
 import br.edu.biopark.manutencao.service.PredicaoService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.headers.Header;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -17,7 +16,6 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -34,9 +32,7 @@ public class PredicaoController {
     @PostMapping
     @Operation(summary = "Envia uma leitura de sensores e recebe a predição de falha")
     @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "Predição criada e salva no histórico",
-                    headers = @Header(name = "Location", description = "Caminho da predição criada",
-                            schema = @Schema(type = "string", example = "/api/predicoes/1")),
+            @ApiResponse(responseCode = "200", description = "Predição criada e salva no histórico",
                     content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = PredicaoResponse.class))),
             @ApiResponse(responseCode = "400", description = "Leitura inválida ou JSON malformado",
@@ -48,7 +44,7 @@ public class PredicaoController {
     })
     public ResponseEntity<PredicaoResponse> criar(@Valid @RequestBody LeituraRequest request) {
         PredicaoResponse resposta = service.registrar(request);
-        return ResponseEntity.created(URI.create("/api/predicoes/" + resposta.id())).body(resposta);
+        return ResponseEntity.ok(resposta);
     }
 
     @GetMapping("/{id}")
